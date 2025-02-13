@@ -12,6 +12,13 @@ export const metadata: Metadata = {
   title: `${WEBSITE_NAME} - Your Fitness Journey Starts Here`,
   description:
     "Transform your life with our expert-led fitness programs and state-of-the-art facilities.",
+  icons: [
+    {
+      rel: "icon",
+      url: "/favicon.svg",
+      type: "image/svg+xml",
+    },
+  ],
 };
 
 export default function RootLayout({

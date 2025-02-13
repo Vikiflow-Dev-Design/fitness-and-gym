@@ -8,6 +8,7 @@ import { EnhancedThemeToggle } from "../ui/enhanced-theme-toggle";
 import { cn, WEBSITE_NAME } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import Logo from "../icons/logo";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -29,8 +30,12 @@ const Navbar = () => {
       className="fixed w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50 border-b"
     >
       <div className="container flex h-16 items-center justify-between px-4">
-        <Link href="/" className="font-bold text-xl flex-shrink-0">
-          {WEBSITE_NAME}
+        <Link
+          href="/"
+          className="flex items-center space-x-2 font-bold text-xl flex-shrink-0"
+        >
+          <Logo className="w-8 h-8 text-primary" />
+          <span>{WEBSITE_NAME}</span>
         </Link>
 
         {/* Desktop Navigation */}
