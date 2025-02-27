@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { WEBSITE_NAME } from "@/lib/utils";
+import MotivationCTA from "@/components/sections/motivation-cta";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
@@ -314,6 +315,20 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      {/* Motivation CTA */}
+      <MotivationCTA
+        title="Ready to Start Your Fitness Journey?"
+        description="Join our community today and transform your life with expert guidance and state-of-the-art facilities."
+        buttonText="Start Your Journey"
+        variant="gradient"
+        listItems={[
+          "Personalized Fitness Programs",
+          "Expert Training Staff",
+          "State-of-the-art Equipment",
+          "Supportive Community",
+        ]}
+      />
 
       {/* Map Section */}
       <section className="h-[400px] bg-gray-200 dark:bg-gray-900">

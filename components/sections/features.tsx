@@ -1,59 +1,63 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { Dumbbell, Users, Trophy, Heart } from 'lucide-react'
+import { motion } from "framer-motion";
+import { Dumbbell, Users, Trophy, Heart } from "lucide-react";
 
 const features = [
   {
     icon: Dumbbell,
     title: "State-of-the-art Equipment",
-    description: "Access to premium fitness equipment and modern facilities for optimal training."
+    description:
+      "Access to premium fitness equipment and modern facilities for optimal training.",
   },
   {
     icon: Users,
     title: "Expert Trainers",
-    description: "Professional guidance from certified trainers to help you achieve your goals."
+    description:
+      "Professional guidance from certified trainers to help you achieve your goals.",
   },
   {
     icon: Trophy,
     title: "Proven Results",
-    description: "Join thousands of successful members who have transformed their lives."
+    description:
+      "Join thousands of successful members who have transformed their lives.",
   },
   {
     icon: Heart,
     title: "Supportive Community",
-    description: "Be part of a motivating community that inspires and encourages growth."
-  }
-]
+    description:
+      "Be part of a motivating community that inspires and encourages growth.",
+  },
+];
 
 const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.2
-    }
-  }
-}
+      staggerChildren: 0.2,
+    },
+  },
+};
 
 const itemVariants = {
   hidden: {
     opacity: 0,
-    y: 20
+    y: 20,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5
-    }
-  }
-}
+      duration: 0.5,
+    },
+  },
+};
 
 const Features = () => {
   return (
     <section className="py-24 bg-gray-50 dark:bg-gray-900">
-      <div className="container">
-        <motion.h2 
+      <div className="container px-4 mx-auto">
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -63,7 +67,7 @@ const Features = () => {
           Why Choose Us
         </motion.h2>
 
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -79,14 +83,18 @@ const Features = () => {
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                 <feature.icon className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 dark:text-white">{feature.title}</h3>
-              <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
+              <h3 className="text-xl font-semibold mb-2 dark:text-white">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                {feature.description}
+              </p>
             </motion.div>
           ))}
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Features
+export default Features;

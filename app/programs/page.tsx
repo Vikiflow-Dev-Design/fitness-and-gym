@@ -114,13 +114,15 @@ export default function Programs() {
             <p className="text-xl mb-8">
               Join any of our programs and start your fitness journey today
             </p>
-            <Button
-              variant="secondary"
-              size="lg"
-              className="bg-white text-primary hover:bg-gray-100"
-            >
-              Join Now
-            </Button>
+            <Link href="/membership">
+              <Button
+                variant="secondary"
+                size="lg"
+                className="bg-white text-primary hover:bg-gray-100"
+              >
+                Join Now
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>

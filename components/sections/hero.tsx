@@ -2,22 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center">
-      {/* Background Image */}
-      <Image
-        src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070"
-        alt="Gym"
-        fill
-        priority
-        className="object-cover"
-      />
-      <div className="absolute inset-0 bg-black/60" />
-
+    <section className="relative min-h-screen flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070')] bg-cover bg-center before:content-[''] before:absolute before:inset-0 before:bg-black/60">
       {/* Content */}
       <div className="relative z-10 container px-4 mx-auto text-center text-white">
         <motion.h1

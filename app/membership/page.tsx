@@ -249,9 +249,11 @@ export default function Membership() {
             <p className="text-xl mb-8">
               Join our community today and transform your life through fitness
             </p>
-            <Button className="bg-white text-primary hover:bg-gray-100 text-lg px-8 py-6">
-              Join Now
-            </Button>
+            <Link href="/membership">
+              <Button className="bg-white text-primary hover:bg-gray-100 text-lg px-8 py-6">
+                Join Now
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useMemo } from "react";
 import { allPosts } from "./data";
 import { WEBSITE_NAME } from "@/lib/utils";
+import MotivationCTA from "@/components/sections/motivation-cta";
 
 const categories = [
   "All",
@@ -272,6 +273,24 @@ export default function Blog() {
           </div>
         </section>
       )}
+
+      {/* Motivation CTA */}
+      <MotivationCTA
+        title="Stay Updated with Expert Fitness Tips"
+        description="Subscribe to our newsletter and get exclusive fitness content, workout tips, and special offers delivered to your inbox."
+        buttonText="Subscribe Now"
+        variant="black"
+        listItems={[
+          "Weekly Workout Plans",
+          "Nutrition Tips & Recipes",
+          "Expert Fitness Advice",
+          "Member Success Stories",
+        ]}
+        secondaryButton={{
+          text: "View All Articles",
+          href: "/blog",
+        }}
+      />
     </main>
   );
 }
