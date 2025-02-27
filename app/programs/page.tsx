@@ -51,39 +51,31 @@ export default function Programs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-shadow"
+                className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className="relative h-64">
                   <Image
                     src={program.image}
                     alt={program.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-bold text-white mb-2">
+                      {program.title}
+                    </h3>
+                    <p className="text-gray-200">{program.description}</p>
+                  </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2 dark:text-white">
-                    {program.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    {program.description}
-                  </p>
-                  <div className="flex gap-4 mb-4">
-                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">
-                      {Object.keys(program.schedule).length} days/week
-                    </span>
-                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">
-                      {formatNaira(program.pricing.monthly)}/month
-                    </span>
-                  </div>
-                  <ul className="space-y-2 mb-6">
-                    {program.features.slice(0, 3).map((feature, idx) => (
+                  <ul className="space-y-3 mb-6">
+                    {program.features.slice(0, 5).map((feature, idx) => (
                       <li
                         key={idx}
-                        className="text-gray-600 dark:text-gray-300 flex items-center"
+                        className="flex items-center text-gray-600 dark:text-gray-300"
                       >
-                        <span className="w-2 h-2 bg-primary rounded-full mr-2" />
+                        <span className="text-primary mr-2">✓</span>
                         {feature}
                       </li>
                     ))}

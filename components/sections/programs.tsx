@@ -36,14 +36,14 @@ const Programs = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
+              className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
             >
               <Link href={`/programs/${program.id}`}>
                 <div
-                  className="relative h-64 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  className="relative h-64 bg-cover bg-center"
                   style={{ backgroundImage: `url(${program.image})` }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent">
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       <h3 className="text-2xl font-bold text-white mb-2">
                         {program.title}
@@ -53,21 +53,13 @@ const Programs = () => {
                   </div>
                 </div>
                 <div className="p-6">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">
-                      {Object.keys(program.schedule).length} days/week
-                    </span>
-                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">
-                      {formatNaira(program.pricing.monthly)}/month
-                    </span>
-                  </div>
-                  <ul className="space-y-2 mb-4">
-                    {program.features.slice(0, 3).map((feature, idx) => (
+                  <ul className="space-y-3 mb-4">
+                    {program.features.slice(0, 5).map((feature, idx) => (
                       <li
                         key={idx}
-                        className="text-gray-600 dark:text-gray-300 flex items-center"
+                        className="flex items-center text-gray-600 dark:text-gray-300"
                       >
-                        <span className="w-2 h-2 bg-primary rounded-full mr-2" />
+                        <span className="text-primary mr-2">✓</span>
                         {feature}
                       </li>
                     ))}
