@@ -9,6 +9,7 @@ import { cn, WEBSITE_NAME } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Logo from "../icons/logo";
+import AccountDropdown from "../auth/account-dropdown";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -59,11 +60,9 @@ const Navbar = () => {
 
         <div className="flex items-center space-x-4">
           <EnhancedThemeToggle size="sm" />
-          <Link href="/membership" className="hidden lg:inline-flex">
-            <Button size="sm" className="whitespace-nowrap">
-              Join Now
-            </Button>
-          </Link>
+          <div className="hidden lg:block">
+            <AccountDropdown />
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -102,11 +101,9 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <Link href="/membership" onClick={() => setIsOpen(false)}>
-                <Button size="sm" className="w-full mt-2">
-                  Join Now
-                </Button>
-              </Link>
+              <div className="py-2">
+                <AccountDropdown />
+              </div>
             </div>
           </motion.div>
         )}

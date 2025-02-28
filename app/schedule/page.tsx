@@ -1,62 +1,328 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { useState } from 'react'
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+const days = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
 
 const classes = {
   Monday: [
-    { time: '06:00', name: 'Morning Yoga', trainer: 'Sarah Johnson', duration: '60 min', spots: 15 },
-    { time: '08:00', name: 'HIIT', trainer: 'Mike Thompson', duration: '45 min', spots: 20 },
-    { time: '10:00', name: 'Spin Class', trainer: 'Emily Davis', duration: '45 min', spots: 25 },
-    { time: '17:00', name: 'Boxing', trainer: 'James Wilson', duration: '60 min', spots: 15 },
-    { time: '19:00', name: 'Pilates', trainer: 'Lisa Anderson', duration: '60 min', spots: 20 }
+    {
+      time: "06:00",
+      name: "Morning Yoga",
+      trainer: "Sarah Johnson",
+      duration: "60 min",
+      spots: 15,
+    },
+    {
+      time: "08:00",
+      name: "HIIT",
+      trainer: "Mike Thompson",
+      duration: "45 min",
+      spots: 20,
+    },
+    {
+      time: "10:00",
+      name: "Spin Class",
+      trainer: "Emily Davis",
+      duration: "45 min",
+      spots: 25,
+    },
+    {
+      time: "17:00",
+      name: "Boxing",
+      trainer: "James Wilson",
+      duration: "60 min",
+      spots: 15,
+    },
+    {
+      time: "19:00",
+      name: "Pilates",
+      trainer: "Lisa Anderson",
+      duration: "60 min",
+      spots: 20,
+    },
   ],
   Tuesday: [
-    { time: '07:00', name: 'CrossFit', trainer: 'John Smith', duration: '60 min', spots: 12 },
-    { time: '09:00', name: 'Zumba', trainer: 'Maria Garcia', duration: '45 min', spots: 30 },
-    { time: '16:00', name: 'Strength Training', trainer: 'David Brown', duration: '60 min', spots: 15 },
-    { time: '18:00', name: 'Yoga Flow', trainer: 'Sarah Johnson', duration: '60 min', spots: 20 },
-    { time: '20:00', name: 'Core Blast', trainer: 'Mike Thompson', duration: '30 min', spots: 25 }
+    {
+      time: "07:00",
+      name: "CrossFit",
+      trainer: "John Smith",
+      duration: "60 min",
+      spots: 12,
+    },
+    {
+      time: "09:00",
+      name: "Zumba",
+      trainer: "Maria Garcia",
+      duration: "45 min",
+      spots: 30,
+    },
+    {
+      time: "16:00",
+      name: "Strength Training",
+      trainer: "David Brown",
+      duration: "60 min",
+      spots: 15,
+    },
+    {
+      time: "18:00",
+      name: "Yoga Flow",
+      trainer: "Sarah Johnson",
+      duration: "60 min",
+      spots: 20,
+    },
+    {
+      time: "20:00",
+      name: "Core Blast",
+      trainer: "Mike Thompson",
+      duration: "30 min",
+      spots: 25,
+    },
   ],
   Wednesday: [
-    { time: '06:00', name: 'HIIT', trainer: 'Mike Thompson', duration: '45 min', spots: 20 },
-    { time: '08:00', name: 'Pilates', trainer: 'Lisa Anderson', duration: '60 min', spots: 15 },
-    { time: '10:00', name: 'Boxing', trainer: 'James Wilson', duration: '60 min', spots: 15 },
-    { time: '17:00', name: 'Spin Class', trainer: 'Emily Davis', duration: '45 min', spots: 25 },
-    { time: '19:00', name: 'Yoga', trainer: 'Sarah Johnson', duration: '60 min', spots: 20 }
+    {
+      time: "06:00",
+      name: "HIIT",
+      trainer: "Mike Thompson",
+      duration: "45 min",
+      spots: 20,
+    },
+    {
+      time: "08:00",
+      name: "Pilates",
+      trainer: "Lisa Anderson",
+      duration: "60 min",
+      spots: 15,
+    },
+    {
+      time: "10:00",
+      name: "Boxing",
+      trainer: "James Wilson",
+      duration: "60 min",
+      spots: 15,
+    },
+    {
+      time: "17:00",
+      name: "Spin Class",
+      trainer: "Emily Davis",
+      duration: "45 min",
+      spots: 25,
+    },
+    {
+      time: "19:00",
+      name: "Yoga",
+      trainer: "Sarah Johnson",
+      duration: "60 min",
+      spots: 20,
+    },
   ],
   Thursday: [
-    { time: '07:00', name: 'Strength Training', trainer: 'David Brown', duration: '60 min', spots: 15 },
-    { time: '09:00', name: 'Core Blast', trainer: 'Mike Thompson', duration: '30 min', spots: 25 },
-    { time: '16:00', name: 'Zumba', trainer: 'Maria Garcia', duration: '45 min', spots: 30 },
-    { time: '18:00', name: 'CrossFit', trainer: 'John Smith', duration: '60 min', spots: 12 },
-    { time: '20:00', name: 'Yoga Flow', trainer: 'Sarah Johnson', duration: '60 min', spots: 20 }
+    {
+      time: "07:00",
+      name: "Strength Training",
+      trainer: "David Brown",
+      duration: "60 min",
+      spots: 15,
+    },
+    {
+      time: "09:00",
+      name: "Core Blast",
+      trainer: "Mike Thompson",
+      duration: "30 min",
+      spots: 25,
+    },
+    {
+      time: "16:00",
+      name: "Zumba",
+      trainer: "Maria Garcia",
+      duration: "45 min",
+      spots: 30,
+    },
+    {
+      time: "18:00",
+      name: "CrossFit",
+      trainer: "John Smith",
+      duration: "60 min",
+      spots: 12,
+    },
+    {
+      time: "20:00",
+      name: "Yoga Flow",
+      trainer: "Sarah Johnson",
+      duration: "60 min",
+      spots: 20,
+    },
   ],
   Friday: [
-    { time: '06:00', name: 'Morning Yoga', trainer: 'Sarah Johnson', duration: '60 min', spots: 15 },
-    { time: '08:00', name: 'HIIT', trainer: 'Mike Thompson', duration: '45 min', spots: 20 },
-    { time: '10:00', name: 'Spin Class', trainer: 'Emily Davis', duration: '45 min', spots: 25 },
-    { time: '17:00', name: 'Boxing', trainer: 'James Wilson', duration: '60 min', spots: 15 },
-    { time: '19:00', name: 'Pilates', trainer: 'Lisa Anderson', duration: '60 min', spots: 20 }
+    {
+      time: "06:00",
+      name: "Morning Yoga",
+      trainer: "Sarah Johnson",
+      duration: "60 min",
+      spots: 15,
+    },
+    {
+      time: "08:00",
+      name: "HIIT",
+      trainer: "Mike Thompson",
+      duration: "45 min",
+      spots: 20,
+    },
+    {
+      time: "10:00",
+      name: "Spin Class",
+      trainer: "Emily Davis",
+      duration: "45 min",
+      spots: 25,
+    },
+    {
+      time: "17:00",
+      name: "Boxing",
+      trainer: "James Wilson",
+      duration: "60 min",
+      spots: 15,
+    },
+    {
+      time: "19:00",
+      name: "Pilates",
+      trainer: "Lisa Anderson",
+      duration: "60 min",
+      spots: 20,
+    },
   ],
   Saturday: [
-    { time: '08:00', name: 'Yoga Flow', trainer: 'Sarah Johnson', duration: '60 min', spots: 20 },
-    { time: '10:00', name: 'HIIT', trainer: 'Mike Thompson', duration: '45 min', spots: 20 },
-    { time: '12:00', name: 'Zumba', trainer: 'Maria Garcia', duration: '45 min', spots: 30 },
-    { time: '14:00', name: 'CrossFit', trainer: 'John Smith', duration: '60 min', spots: 12 }
+    {
+      time: "08:00",
+      name: "Yoga Flow",
+      trainer: "Sarah Johnson",
+      duration: "60 min",
+      spots: 20,
+    },
+    {
+      time: "10:00",
+      name: "HIIT",
+      trainer: "Mike Thompson",
+      duration: "45 min",
+      spots: 20,
+    },
+    {
+      time: "12:00",
+      name: "Zumba",
+      trainer: "Maria Garcia",
+      duration: "45 min",
+      spots: 30,
+    },
+    {
+      time: "14:00",
+      name: "CrossFit",
+      trainer: "John Smith",
+      duration: "60 min",
+      spots: 12,
+    },
   ],
   Sunday: [
-    { time: '09:00', name: 'Yoga', trainer: 'Sarah Johnson', duration: '60 min', spots: 20 },
-    { time: '11:00', name: 'Spin Class', trainer: 'Emily Davis', duration: '45 min', spots: 25 },
-    { time: '13:00', name: 'Core Blast', trainer: 'Mike Thompson', duration: '30 min', spots: 25 }
-  ]
-}
+    {
+      time: "09:00",
+      name: "Yoga",
+      trainer: "Sarah Johnson",
+      duration: "60 min",
+      spots: 20,
+    },
+    {
+      time: "11:00",
+      name: "Spin Class",
+      trainer: "Emily Davis",
+      duration: "45 min",
+      spots: 25,
+    },
+    {
+      time: "13:00",
+      name: "Core Blast",
+      trainer: "Mike Thompson",
+      duration: "30 min",
+      spots: 25,
+    },
+  ],
+  bookClass: async (
+    classItem: { time: string; name: string; trainer: string },
+    day: string
+  ) => {
+    try {
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          classId: `${day}-${classItem.time}-${classItem.name}`,
+          className: classItem.name,
+          day: day,
+          time: classItem.time,
+          trainer: classItem.trainer,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to book class");
+      }
+
+      return { success: true, data };
+    } catch (error) {
+      console.error("Error booking class:", error);
+      return {
+        success: false,
+        error:
+          error instanceof Error ? error.message : "An unknown error occurred",
+      };
+    }
+  },
+};
 
 export default function Schedule() {
-  const [selectedDay, setSelectedDay] = useState('Monday')
+  const [selectedDay, setSelectedDay] = useState("Monday");
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const handleBookClass = async (classItem: {
+    time: string;
+    name: string;
+    trainer: string;
+  }) => {
+    setIsLoading(true);
+    try {
+      const result = await classes.bookClass(classItem, selectedDay);
+
+      if (result.success) {
+        toast.success("Class booked successfully!");
+        router.push("/bookings");
+      } else {
+        if (result.error?.includes("logged in")) {
+          toast.error("Please log in to book a class");
+          router.push("/auth/login");
+        } else {
+          toast.error(result.error);
+        }
+      }
+    } catch (error) {
+      toast.error("Failed to book class. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <main className="min-h-screen">
@@ -97,9 +363,9 @@ export default function Schedule() {
               <Button
                 key={day}
                 onClick={() => setSelectedDay(day)}
-                variant={selectedDay === day ? 'default' : 'outline'}
+                variant={selectedDay === day ? "default" : "outline"}
                 className={`px-8 py-6 text-lg ${
-                  selectedDay === day ? 'bg-primary hover:bg-primary/90' : ''
+                  selectedDay === day ? "bg-primary hover:bg-primary/90" : ""
                 }`}
               >
                 {day}
@@ -109,7 +375,15 @@ export default function Schedule() {
 
           {/* Class List */}
           <div className="max-w-4xl mx-auto">
-            {classes[selectedDay].map((classItem, index) => (
+            {(
+              classes[selectedDay as keyof typeof classes] as Array<{
+                time: string;
+                name: string;
+                trainer: string;
+                duration: string;
+                spots: number;
+              }>
+            ).map((classItem, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -120,7 +394,9 @@ export default function Schedule() {
                 <div className="p-6 flex flex-wrap items-center gap-6">
                   <div className="flex-1">
                     <div className="flex items-center gap-4 mb-2">
-                      <span className="text-2xl font-bold">{classItem.time}</span>
+                      <span className="text-2xl font-bold">
+                        {classItem.time}
+                      </span>
                       <span className="text-xl font-semibold text-primary">
                         {classItem.name}
                       </span>
@@ -133,8 +409,12 @@ export default function Schedule() {
                       <span>{classItem.spots} spots available</span>
                     </div>
                   </div>
-                  <Button className="bg-primary hover:bg-primary/90">
-                    Book Now
+                  <Button
+                    className="bg-primary hover:bg-primary/90"
+                    onClick={() => handleBookClass(classItem)}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Booking..." : "Book Now"}
                   </Button>
                 </div>
               </motion.div>
@@ -164,5 +444,5 @@ export default function Schedule() {
         </div>
       </section>
     </main>
-  )
+  );
 }
